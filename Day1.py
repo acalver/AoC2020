@@ -1,6 +1,6 @@
 import pandas as pd
 
-expenseReport = pd.read_csv('Day1_expenses.csv', header=None)
+expenseReport = pd.read_csv('./data/Day1_expenses.csv', header=None)
 
 expenseReport = expenseReport[0].values.tolist()
 

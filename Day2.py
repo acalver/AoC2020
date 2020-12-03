@@ -1,6 +1,6 @@
 import pandas as pd
 
-passwords = pd.read_csv('Day2_passwords.csv', header=None)
+passwords = pd.read_csv('./data/Day2_passwords.csv', header=None)
 
 passwords['MinLetter'] = passwords[0].str.extract(r'(^[0-9]*)')
 passwords['MaxLetter'] = passwords[0].str.extract(r'((?<=-)[0-9]{1,2})')

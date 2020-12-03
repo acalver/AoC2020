@@ -1,6 +1,6 @@
 import pandas as pd
 
-toboggan = pd.read_csv('Day3_toboggan.csv', header = None)
+toboggan = pd.read_csv('./data/Day3_toboggan.csv', header = None)
 toboggan = toboggan[0].values
 
 def traversal(right, down, data = toboggan):
