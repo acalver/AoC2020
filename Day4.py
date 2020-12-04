@@ -47,11 +47,7 @@ def valid_entries(data = valid):
     valid_e = 0
     
     for i in valid:
-        
-        keys = sorted(i.keys())
-        
-        if 'cid' in keys:
-            keys.remove('cid')
+
             
         byr_test = int(i['byr'])
         ecl_test = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
@@ -71,7 +67,7 @@ def valid_entries(data = valid):
         hgt_test is not None:
             
             if (hgt_test.group()[3:5] == 'cm' and int(hgt_test.group()[0:3]) >= 150 and int(hgt_test.group()[0:3]) <= 193) or \
-            (hgt_test.group()[3:5] == 'in' and int(hgt_test.group()[0:3]) >= 59 and int(hgt_test.group()[0:3]) <= 76):
+            (hgt_test.group()[2:4] == 'in' and int(hgt_test.group()[0:2]) >= 59 and int(hgt_test.group()[0:2]) <= 76):
                 
                 valid_e += 1
         
@@ -79,6 +75,4 @@ def valid_entries(data = valid):
     return(valid_e)
         
         
-print(valid_entries())       
-
-i = valid[0]
+print(valid_entries())
