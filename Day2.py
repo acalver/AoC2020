@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 
 passwords = pd.read_csv('./data/Day2_passwords.csv', header=None)
 
