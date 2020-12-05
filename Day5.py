@@ -30,9 +30,6 @@ def seatBinarySearch(vector, ticket, vector_min = 0):
         return vector_min
     else:
         return vector_max
-    
-i = 'R'
-i = 'L'
 
 seat_combo = 0
 
@@ -51,52 +48,28 @@ for s in seats:
         
 print(seat_combo)
 
+####################################
+#PART 2
+####################################
 
+seat_id_list = []
 
-seats = 'FFBFFFFRRR'
-row = seats[:7]
-col = seats[7:]
-
-row_number = seatBinarySearch(vector = 'row', ticket = row)
-col_number = seatBinarySearch(vector = 'col', ticket = col)
-        
-print(row_number * 8 + col_number)
-
-'''
-print(seatBinarySearch(max_value = 127, ticket = 'FFFBBBF'))
-
-    col_min, col_max = 0, 7
+for s in seats:
     
+    row = s[:7]
+    col = s[7:]
+
+    row_number = seatBinarySearch(vector = 'row', ticket = row)
+    col_number = seatBinarySearch(vector = 'col', ticket = col)
     
+    calc = row_number * 8 + col_number
         
-i = ticket[1]
-    
-    while not finished:
-        if L[minindex][measureIndex] > search or \
-            L[maxindex][measureIndex] < search:
-            return 'Not in list'
-            finished = True
-        
-        elif search == L[midpoint][measureIndex]:
-            #return index and variable value
-            return midpoint
-        #[L[midpoint][0], L[midpoint][measureIndex]]
-            finished = True
-        
-        elif search > L[midpoint][measureIndex]:
-            minindex = midpoint + 1
-            if maxindex - minindex == 1:
-                midpoint = minindex
-            else:
-                midpoint = maxindex - ((maxindex - minindex)//2)
-            
-        else:
-            maxindex = midpoint - 1
-            if maxindex - minindex == 1:
-                midpoint = maxindex
-            else:
-                midpoint = maxindex - ((maxindex - minindex)//2)
-                
-    return 'Not in list'
-        
-'''
+    seat_id_list.append(calc)
+
+seat_id_list= sorted(seat_id_list)
+
+
+for i in range(len(seat_id_list)):
+    if seat_id_list[i+1] != seat_id_list[i]+1:
+        print(seat_id_list[i] + 1)
+        break
