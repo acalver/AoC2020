@@ -25,3 +25,23 @@ def encodedSum(input_list, check_length):
             return target
 
 print(encodedSum(encoded, 25))
+
+#############################
+#ART 2
+#############################
+
+def sequenceSum(input_list, target):
+
+    for i in range(len(input_list)):
+        
+        start = input_list[i]
+        seq_sum = [start]
+        j = i+1
+        while sum(seq_sum) < target:
+            seq_sum.append(input_list[j])
+            j+=1
+            
+        if sum(seq_sum) == target:
+            return(max(seq_sum) + min(seq_sum))
+            
+print(sequenceSum(encoded, 15690279))
