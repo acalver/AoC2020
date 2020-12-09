@@ -1,6 +1,6 @@
 import pandas as pd
 
-cdf = pd.read_csv('./data/Day6_cdf.csv', header = None, skip_blank_lines = False)
+cdf = pd.read_csv('./data/Day6_cdf.csv', header = None, skip_blank_lines = False, sep = '\r\t')
 cdf = cdf[0].values
 
 cdf_total = set()
