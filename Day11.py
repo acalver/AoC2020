@@ -74,10 +74,85 @@ seatChanging(seatsL)
 #PART 2
 #############################################
 
+def seatSight(row_adder, col_adder, n, m, matrix):
+    
+    position = matrix[n][m]
+    while n > 0 and m > 0 and n < len(matrix[0]) -1 and m < len(matrix) - 1:
+        
+        n += row_adder
+        m += col_adder
+        #print(n, m)
+        
+        check_position = matrix[n][m]
+        if check_position == '#':
+            return check_position
+        if check_position == 'L' or check_position == '0':
+             return 'L'
+       
+        
+    #return 'L'
+
+def longSeatStatus(matrix, row, col):
+    
+    longDistance = []
+    longDistance.append(seatSight(1,-1, row, col, matrix))
+    longDistance.append(seatSight(1, 0, row, col, matrix))
+    longDistance.append(seatSight(1, 1, row, col, matrix))
+    longDistance.append(seatSight(-1,-1, row, col, matrix))
+    longDistance.append(seatSight(-1,0, row, col, matrix))
+    longDistance.append(seatSight(-1,1, row, col, matrix))
+    longDistance.append(seatSight(0,-1, row, col, matrix))
+    longDistance.append(seatSight(0,1, row, col, matrix))
+    
+    surroundingD = dict()
+    for s in longDistance:
+        if s not in surroundingD:
+                surroundingD[s] = 1
+        else:
+            surroundingD[s] += 1
+            
+    return surroundingD
+
+
+longSeatStatus(seating_plan, 7, 5)
+
+
+data = copy.deepcopy(seatsL)
+
+def longSeatChanging(data):
+
+    new_plan = copy.deepcopy(data)
+    change = True
+    while change:
+        change = False
+        occupied = 0
+        
+        for i in range(1, len(data) - 1):
+            
+            for j in range(1, len(data[0])-1):
+                #print(i, j)
+                position = data[i][j]
+                if position == '#':
+                    occupied += 1
+                
+                test = longSeatStatus(data, i, j)  
+        
+                if position == 'L' and test.get('#',0) == 0:
+                    new_plan[i][j] = '#'
+                    change = True
+                if position == '#' and test.get('#',0) >= 5:
+                    new_plan[i][j] = 'L'
+                    change = True
+        
+        data = copy.deepcopy(new_plan)
+        
+    print(occupied)
+
+longSeatChanging(seating_plan)
+longSeatChanging(seatsL)
     
 seating_plan[2]
 seating_plan = [list('0L.LL.LL.LL0'),
-                #list('000000000000'),
 list('0LLLLLLL.LL0'),
 list('0L.L.L..L..0'),
 list('0LLLL.LL.LL0'),
